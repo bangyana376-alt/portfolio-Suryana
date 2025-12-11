@@ -1,0 +1,137 @@
+/* assets/css/style.css
+   Minimalis profesional + neon halus, cyber grid, photo glow, scan-line, responsive
+*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@600&display=swap');
+
+:root{
+  --bg:#0a0f1f;
+  --panel: rgba(255,255,255,0.02);
+  --text:#e7e7e7;
+  --accent:#5ef0ff;
+  --accent2:#b77bff;
+  --glass: rgba(255,255,255,0.03);
+  --radius:14px;
+}
+
+/* reset */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:"Inter",system-ui,Arial;
+  background:linear-gradient(180deg,#070a10 0%,var(--bg) 100%);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+/* header */
+.site-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:18px 6%;
+  position:sticky;
+  top:0;
+  background:rgba(7,9,12,0.45);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(255,255,255,0.03);
+  z-index:90;
+}
+.brand{display:flex;align-items:center;gap:12px}
+.logo-img{width:48px;height:48px}
+.brand-name{font-weight:700;font-size:18px;color:var(--accent)}
+
+/* nav */
+.nav{display:flex;align-items:center;gap:12px}
+.menu-btn{display:none;background:transparent;border:none;color:var(--text);font-size:22px;cursor:pointer}
+.nav-list{display:flex;gap:20px;list-style:none}
+.nav-list a{color:var(--text);text-decoration:none;padding:8px 10px;border-radius:8px;transition:all .18s}
+.nav-list a:hover,.nav-list a.active{color:var(--accent);box-shadow:0 6px 24px rgba(94,240,255,0.04)}
+
+/* loader */
+.loader{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#000;z-index:9999}
+.loader-ring{width:80px;height:80px;border:4px solid rgba(94,240,255,0.08);border-top-color:var(--accent);border-radius:50%;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* hero */
+.hero{
+  min-height:92vh;
+  display:flex;
+  align-items:center;
+  padding:40px 6%;
+  position:relative;
+  overflow:hidden;
+}
+.hero-grid{position:absolute;inset:0;z-index:0;opacity:0.18;pointer-events:none}
+.hero-inner{display:flex;gap:48px;align-items:center;z-index:2;width:100%}
+.hero-left{flex:1;max-width:640px}
+.title{font-family:"Orbitron",sans-serif;font-size:40px;color:var(--accent);margin-bottom:8px}
+.subtitle{opacity:0.85;margin-bottom:18px}
+.lead{opacity:0.9;margin-bottom:20px;line-height:1.6}
+.hero-ctas{display:flex;gap:12px}
+.btn{background:var(--accent);color:#001;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600;display:inline-block}
+.btn-ghost{background:transparent;border:1px solid rgba(94,240,255,0.12);color:var(--text)}
+
+/* photo stack */
+.photo-stack{position:relative;width:260px;height:260px;margin:auto}
+.ring{position:absolute;width:300px;height:300px;border-radius:50%;left:-20px;top:-20px;border:2px solid rgba(94,240,255,0.12);animation:spinSlow 10s linear infinite;opacity:0.6}
+.ring-2{position:absolute;width:340px;height:340px;border-radius:50%;left:-40px;top:-40px;border:2px solid rgba(183,123,255,0.06);animation:spinSlowReverse 14s linear infinite;opacity:0.35}
+@keyframes spinSlow{to{transform:rotate(360deg)}}@keyframes spinSlowReverse{to{transform:rotate(-360deg)}}
+.photo-wrapper{position:absolute;width:220px;height:220px;border-radius:50%;overflow:hidden;left:20px;top:20px;box-shadow:0 10px 30px rgba(0,0,0,0.6);transition:transform .35s,box-shadow .35s}
+.profile-photo{width:100%;height:100%;object-fit:cover;filter:brightness(1.06);transition:filter .35s,transform .35s}
+.photo-wrapper:hover{transform:scale(1.04);box-shadow:0 20px 60px rgba(94,240,255,0.06)}
+.photo-wrapper:hover .profile-photo{filter:brightness(1.2) saturate(1.08) hue-rotate(18deg)}
+/* scanline */
+.scan-line{position:absolute;top:-100%;width:100%;height:26%;background:linear-gradient(to bottom, rgba(94,240,255,0.32), transparent);opacity:0}
+.photo-wrapper:hover .scan-line{animation:scan 1s linear forwards;opacity:1}
+@keyframes scan{0%{top:-100%}100%{top:120%}}
+
+/* page */
+.page{padding:100px 6%}
+.page--narrow{max-width:900px;margin:0 auto;padding-top:120px}
+.page-title{font-family:"Orbitron",sans-serif;color:var(--accent);font-size:32px;margin-bottom:18px}
+
+/* projects */
+.project-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.project-card{background:var(--panel);padding:20px;border-radius:12px;border:1px solid rgba(255,255,255,0.02);transition:transform .28s,box-shadow .28s}
+.project-card:hover{transform:translateY(-8px);box-shadow:0 20px 60px rgba(0,0,0,0.5);border-color:rgba(94,240,255,0.12)}
+
+/* scroll reveal */
+.sr{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.sr.show{opacity:1;transform:translateY(0)}
+
+/* responsive */
+@media(max-width:900px){
+  .nav-list{position:fixed;top:0;right:-100%;width:70%;height:100vh;background:rgba(7,9,12,0.95);flex-direction:column;padding-top:120px;padding-left:26px;gap:24px;transition:0.35s}
+  .nav-list.open{right:0}
+  .menu-btn{display:block}
+  .hero-inner{flex-direction:column}
+  .photo-stack{margin-top:22px}
+}
+
+/* small utilities */
+.hidden{display:none}
+/* Gambar pada proyek */
+.project-img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* Ikon Contact */
+.icon {
+    width: 22px;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+/* Floating animation */
+.float-anim {
+    animation: floating 3s ease-in-out infinite;
+}
+
+@keyframes floating {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
